@@ -1,7 +1,10 @@
+import PlannerForm from "../../components/PlannerForm"
+
 const Planner: React.FC = () => {
     return(
         <div>
-            <h1>Planner</h1>
+            
+            <PlannerForm></PlannerForm>
         </div>
     )
 }

@@ -2,13 +2,19 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: 136.6rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  
+  background-color: ${({ theme }) => theme.colors.gray__400};
+
   padding: 0 2rem;
-  
-`
+  position: absolute; 
+  top: 12.5rem; //Deixar o cabeçalho a vista
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
 
 export const MainWrapper = styled.main`
   display: flex;
