@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.gray__400};
+  background-color: ${({ theme }) => theme.colors.gray__100};
 
   padding: 0 2rem;
   position: absolute; 

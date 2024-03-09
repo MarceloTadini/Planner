@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
     display: flex;
     justify-content: center;
-    background-color: ${({ theme }) => theme.colors.gray__400};
+    background-color: ${({ theme }) => theme.colors.purple__100};
 `
 
 export const TaskGeneratorForm = styled.form`
@@ -28,8 +28,8 @@ export const TaskGeneratorForm = styled.form`
 export const TaskLabel = styled.label`
     align-self: flex-start;
 
-    color: ${({ theme }) => theme.colors.gray__100};
-    font-size: 1.6rem;
+    color: ${({ theme }) => theme.colors.gray__400};
+    font-size: 1.8rem;
     font-weight: bold;
     font-family: ${({ theme }) => theme.fonts.text};
 `
@@ -40,13 +40,21 @@ export const Input = styled.input`
     height: 3.375rem;
     border-radius: 8px;
 
-    background-color: ${({ theme }) => theme.colors.gray__500};
-    color: ${({ theme }) => theme.colors.gray__200};
+    font-family: ${({ theme }) => theme.fonts.text};
+    font-size: 1.4rem;
+
+    background-color: ${({ theme }) => theme.colors.purple__400};
     border: none;
+
+    &::placeholder{
+        color: ${({ theme }) => theme.colors.gray__300};
+        font-weight: normal;
+    }
     
     &:focus{
-        color: ${({ theme }) => theme.colors.gray__100};
-        border: 2px solid ${({ theme }) => theme.colors.purple__700}; 
+        color: ${({ theme }) => theme.colors.gray__400};
+        font-weight: bold;
+        border: 2px solid ${({ theme }) => theme.colors.purple__500}; 
     }
 
 `
@@ -61,14 +69,14 @@ export const AddTask = styled.button`
     gap: 0.3rem;
 
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.colors.blue__500};
+    background-color: ${({ theme }) => theme.colors.purple__500};
     color: ${({ theme }) => theme.colors.gray__100};
     font-weight: bold;
     font-size: 1rem;
 
     &:hover{
         cursor: pointer;
-    background-color: ${({ theme }) => theme.colors.blue};
+    background-color: ${({ theme }) => theme.colors.purple__700};
 
     }
  `
