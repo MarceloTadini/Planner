@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.main`
     display: flex;
     justify-content: center;
-    background-color: ${({ theme }) => theme.colors.gray__100};
 `
 
 export const TaskGeneratorForm = styled.form`
@@ -15,6 +14,7 @@ export const TaskGeneratorForm = styled.form`
     padding: 1rem 2rem 1rem 2rem;
     gap: 1rem;
     transition: .2s;
+    background-color: ${({ theme }) => theme.colors.gray__200};
 
 
     border-radius: 8px; /* Borda arredondada */
@@ -40,17 +40,19 @@ export const Input = styled.input`
     height: 3.375rem;
     border-radius: 8px;
 
-    background-color: ${({ theme }) => theme.colors.gray__300};
-    color: ${({ theme }) => theme.colors.gray__100};
+    background-color: ${({ theme }) => theme.colors.gray__100};
+    color: ${({ theme }) => theme.colors.gray__500};
+    font-weight: 500;
     border: none;
 
     &::placeholder{
-        color: ${({ theme }) => theme.colors.gray__100};
+        color: ${({ theme }) => theme.colors.gray__300};
+        font-weight: 400;
     }
     
     &:focus{
-        color: ${({ theme }) => theme.colors.gray__100};
-        border: 2px solid ${({ theme }) => theme.colors.purple__500}; 
+        color: ${({ theme }) => theme.colors.gray__500};
+        border: 2px solid ${({ theme }) => theme.colors.blue__500}; 
     }
 
 `

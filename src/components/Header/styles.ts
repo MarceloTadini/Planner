@@ -20,12 +20,12 @@ export const LinkToPlanner = styled.button`
     border-radius: 8px;
     color: ${({ theme }) => theme.colors.gray__100};
     font-weight: bold;
-    font-family: ${({ theme }) => theme.colors.text};
+    font-family: ${({ theme }) => theme.fonts.text};
     transition: .2s;
     
 
 
     &:hover{
-        background-color: ${({ theme }) => theme.colors.blue};
+        background-color: ${({ theme }) => theme.colors.blue__700};
     }
 `

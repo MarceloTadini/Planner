@@ -23,7 +23,6 @@ export const Container = styled.div`
 `
 
 export const BreadCrumbContainer = styled.div`
-  padding: 2rem 0 0 0;
   display: flex;
   align-items: center;
   flex-wrap: 1;

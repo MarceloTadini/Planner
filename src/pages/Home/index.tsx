@@ -1,39 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plan } from '../../types';
-import ToDo from '../../components/ToDo';
+import Card from '../../components/Card';
+import { MainWrapper } from '../../components/Wrapper/styles';
+import { Loader } from '../../components/Loader/styles';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home: React.FC = () => {
   const [plans, setPlans] = useState<Plan[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:8080/api/planner');
-      setPlans(response.data as Plan[]); // Type cast response data to Plan[]
-    };
-    fetchData();
-  }, []);
+      try {
+        const response = await axios.get('http://localhost:8080/api/planner');
+        const sortedPlans = response.data.sort((a: Plan, b: Plan) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          return dateA - dateB;
+        });
 
-  const formatDate = (date: Date) => {
-    // Use toLocaleDateString for "dd/mm/yyyy" format (customizable)
-    return new Date(date).toLocaleDateString('pt-BR'); // Adjust locale for 'pt-BR'
-  };
+        setPlans(sortedPlans as Plan[]);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        toast.error('Erro ao carregar os dados da API');
+      }
+    };
+
+    fetchData();
+  }, [plans]);
 
   return (
-    <div>
-      <h1>Home</h1>
-      <ToDo></ToDo>
-      {plans.map((plan) => (
-        <div key={plan._id}>
-          <h2>{plan.title}</h2>
-          <p>{plan.description}</p>
-          <p>{plan.location}</p>
-          <p>{plan.participant}</p>
-          <p>{formatDate(plan.date)}</p>
-          {/* Display other plan details as needed */}
-        </div>
-      ))}
-    </div>
+    <MainWrapper>
+      {isLoading ? (
+        <Loader></Loader>
+      ) : (
+        plans.map((plan: Plan) => (
+          <Card key={plan._id} plan={plan} />
+        ))
+      )}
+    </MainWrapper>
   );
 };
 

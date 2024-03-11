@@ -1,6 +1,6 @@
 import PlannerForm from "../../components/PlannerForm"
 
-const Planner: React.FC = () => {
+const EditPlanner: React.FC = () => {
     return(
         <div>
             <PlannerForm></PlannerForm>
@@ -8,4 +8,4 @@ const Planner: React.FC = () => {
     )
 }
 
-export default Planner
+export default EditPlanner

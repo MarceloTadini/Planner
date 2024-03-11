@@ -11,3 +11,7 @@ export interface Plan {
     date: Date;
     participant: string;
 }
+
+export interface CardProps {
+    plan: Plan;
+}

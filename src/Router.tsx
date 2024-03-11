@@ -4,10 +4,12 @@ import Indicator from "./components/Indicator";
 import { Wrapper } from "./components/Wrapper/styles";
 import Home from "./pages/Home";
 import Planner from "./pages/Planner";
+import EditPlanner from "./pages/EditPlanner";
 
 const pathMap = {
     home: 'Home',
-    planner: 'Planner'
+    planner: 'Cadastrar Atividade',
+    editPlanner: 'Editar atividade'
   }
   
   const Layout = () => {
@@ -32,7 +34,8 @@ const pathMap = {
           index: true,
           element: <Home />
         },
-        { path: '/planner', element: <Planner /> }
+        { path: '/planner', element: <Planner /> },
+        { path: '/editPlanner', element: <EditPlanner /> }
       ]
     }
   ])
