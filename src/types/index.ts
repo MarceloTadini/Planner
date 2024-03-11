@@ -11,9 +11,3 @@ export interface Plan {
     date: Date;
     participant: string;
 }
-
-export interface PlanEvent {
-    title: string;
-    start: Date;
-    allDay?: boolean;
-}
