@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   
   span {
-    color: ${({ theme }) => theme.colors.gray__100};
+    color: ${({ theme }) => theme.colors.gray__700};
     font-family: ${({ theme }) => theme.fonts.text};
     font-size: 2rem;
     font-weight: bold;
