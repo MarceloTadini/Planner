@@ -27,6 +27,7 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
   })
   const navigate = useNavigate();
   const [isParticipantsEnabled, setIsParticipantsEnabled] = useState(false);
+  const buttonText = isEdit ? "Atualizar" : "Criar";
 
 
   async function handleFilterTasks(data: TasksFiltersSchema) {
@@ -71,7 +72,7 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
         />
         {errors.description && <S.ErrorMessage>{errors.description.message}</S.ErrorMessage>}
 
-        <S.TaskLabel htmlFor="location">Local</S.TaskLabel>
+        <S.TaskLabel htmlFor="location">Local:</S.TaskLabel>
         <S.Input
           type="text"
           id="location"
@@ -113,7 +114,7 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
           disabled={!isParticipantsEnabled}
         />
 
-        <S.AddTask >Criar <IoIosAddCircleOutline /></S.AddTask>
+        <S.AddTask >{buttonText} <IoIosAddCircleOutline /></S.AddTask>
       </S.TaskGeneratorForm>
     </S.Container>
   );
