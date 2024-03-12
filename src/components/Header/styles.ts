@@ -9,10 +9,10 @@ export const Container = styled.header`
     position: relative;
 `
 
-export const LinkToPlanner = styled.button`
+export const CreateButton = styled.button`
     position: absolute;
     top: 8rem;
-    right: 8rem;
+    left: 8rem;
     width: 10rem;
     height: 4rem;
 
@@ -28,4 +28,18 @@ export const LinkToPlanner = styled.button`
     &:hover{
         background-color: ${({ theme }) => theme.colors.blue__700};
     }
+`
+
+export const PDFButton = styled(CreateButton)`
+    right: 8rem;
+    left: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+    svg{
+        font-size: 1.5rem;
+    }
+
 `

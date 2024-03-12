@@ -93,11 +93,11 @@ export const CardFooter = styled.div`
     button{
         svg{
             font-size:2rem;
-            color: ${({ theme }) => theme.colors.purple__700};
+            color: ${({ theme }) => theme.colors.gray__400};
             transform: .4s;
 
             &:hover{
-                color: ${({ theme }) => theme.colors.purple__500};
+                color: ${({ theme }) => theme.colors.gray__300};
             }
         }
     }
