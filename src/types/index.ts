@@ -9,7 +9,7 @@ export interface Plan {
     description: string;
     location: string;
     date: Date;
-    participant: string;
+    participants: string;
 }
 
 export interface CardProps {

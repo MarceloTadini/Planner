@@ -88,7 +88,19 @@ export const CardFooter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem
+    gap: 1rem;
+
+    button{
+        svg{
+            font-size:2rem;
+            color: ${({ theme }) => theme.colors.purple__700};
+            transform: .4s;
+
+            &:hover{
+                color: ${({ theme }) => theme.colors.purple__500};
+            }
+        }
+    }
     
 
 `

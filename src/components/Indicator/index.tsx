@@ -24,7 +24,7 @@ const Indicator: React.FC<Props> = ({ pathMap }) => {
     const generate = breadcrumbs.map((breadcrumb, index) => {
       const isLast = index === breadcrumbs.length - 1;
       return (
-        <div key={breadcrumb.title}>
+        <div key={breadcrumb.url}>
           {index !== 0 ? <span className="slash"> {'/'} </span> : null}
           <Link to={breadcrumb.url}>
             <span style={{ fontWeight: isLast ? 'bold' : 'normal' }}>{breadcrumb.title}</span>

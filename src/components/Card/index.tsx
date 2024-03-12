@@ -6,14 +6,21 @@ import { MdDelete } from "react-icons/md";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 
 function Card({ plan }: CardProps){
+
+    const navigate = useNavigate()
 
     const formatDate = (date: Date) => {
         // Use toLocaleDateString for "dd/mm/yyyy" format (customizable)
         return new Date(date).toLocaleDateString('pt-BR'); // Adjust locale for 'pt-BR'
       };
+
+      const handleEdit = () => {
+        navigate(`/editPlanner/${plan._id}`);
+      }
 
       const handleDelete = () => {
         const confirmDelete = window.confirm("Deseja realmente excluir o planejamento?");
@@ -48,11 +55,11 @@ function Card({ plan }: CardProps){
                         <p>{plan.location}</p>
                     </S.CardLocation>
                     <S.CardParticipants>
-                       <span>Participantes: </span> {plan.participant}
+                       <span>Participantes: </span> {plan.participants}
                     </S.CardParticipants>
                 </S.CardBody>
                 <S.CardFooter>
-                    <button title="Editar">
+                    <button title="Editar" onClick={handleEdit}>
                         <MdEditCalendar />
                     </button>
                     <button title="Excluir" onClick={handleDelete}>

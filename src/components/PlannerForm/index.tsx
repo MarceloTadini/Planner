@@ -6,6 +6,8 @@ import axios from 'axios'; // Import do Axios
 import { toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Plan } from "../../types";
+import { useNavigate } from "react-router-dom";
 
 const tasksFiltersSchema = z.object({
     title: z.string().min(1, { message: "O título é obrigatório!" }),
@@ -15,22 +17,34 @@ const tasksFiltersSchema = z.object({
     participants: z.string().optional()
 })
 
-type TasksFiltersSchema = z.infer<typeof tasksFiltersSchema>
+export type TasksFiltersSchema = z.infer<typeof tasksFiltersSchema>
 
-function PlannerForm() {
+function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boolean}) {
   const {register, reset,handleSubmit, formState: {errors}} = useForm<TasksFiltersSchema>({
-    resolver: zodResolver(tasksFiltersSchema)
+    resolver: zodResolver(tasksFiltersSchema),
+    defaultValues: initialData || {},
   })
+  const navigate = useNavigate();
+
 
   async function handleFilterTasks(data: TasksFiltersSchema) {
     try {
+      if (isEdit) {
+        // Se isEdit for verdadeiro, realiza a atualização (método PUT)
+        const response = await axios.put(`http://localhost:8080/api/planner/${initialData?._id}`, data);
+        console.log('Resposta da API:', response);
+        toast.success('Atividade atualizada com sucesso!');
+        navigate("/");
+      } else {
+        // Caso contrário, realiza a criação (método POST)
         const response = await axios.post('http://localhost:8080/api/planner', data);
         console.log('Resposta da API:', response);
         toast.success('Atividade cadastrada com sucesso!');
-        reset()
-      } catch (error) {
-        console.error('Erro ao enviar dados:', error);
-        toast.error('Falha ao cadastrar, tente novamente mais tarde!');
+      }
+      reset();
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
+      toast.error('Falha ao cadastrar/atualizar, tente novamente mais tarde!');
       }
   }
 
@@ -42,7 +56,7 @@ function PlannerForm() {
           type="text"
           id="title"
           placeholder="Adicione um título"
-          {...register('title')}
+          {...register('title', {value: initialData?.title  || ''})}
         />
         {errors.title && <S.ErrorMessage>{errors.title.message}</S.ErrorMessage>}
 
@@ -51,7 +65,7 @@ function PlannerForm() {
           type="text"
           id="description"
           placeholder="Adicione uma descrição "
-          {...register('description')}
+          {...register('description', {value: initialData?.description  || ''})}
         />
         {errors.description && <S.ErrorMessage>{errors.description.message}</S.ErrorMessage>}
 
@@ -60,7 +74,7 @@ function PlannerForm() {
           type="text"
           id="location"
           placeholder="Adicione um local "
-          {...register('location')} 
+          {...register('location', {value: initialData?.location  || ''})} 
         />
          {errors.location && <S.ErrorMessage>{errors.location.message}</S.ErrorMessage>} {/* Exibir mensagem de erro */}
           
@@ -79,7 +93,7 @@ function PlannerForm() {
           type="text"
           id="participants"
           placeholder="Adicione os participantes"
-          {...register('participants')} 
+          {...register('participants', {value: initialData?.participants || ''})} 
 
         />
 

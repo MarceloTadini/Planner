@@ -8,8 +8,8 @@ import EditPlanner from "./pages/EditPlanner";
 
 const pathMap = {
     home: 'Home',
-    planner: 'Cadastrar Atividade',
-    editPlanner: 'Editar atividade'
+    planner: 'Cadastrar',
+    editPlanner: 'Editar'
   }
   
   const Layout = () => {
@@ -35,7 +35,7 @@ const pathMap = {
           element: <Home />
         },
         { path: '/planner', element: <Planner /> },
-        { path: '/editPlanner', element: <EditPlanner /> }
+        { path: '/editPlanner/:id', element: <EditPlanner /> }
       ]
     }
   ])
