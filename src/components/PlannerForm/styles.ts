@@ -27,11 +27,25 @@ export const TaskGeneratorForm = styled.form`
 
 export const TaskLabel = styled.label`
     align-self: flex-start;
+    display: flex;
+    align-items: center;
+    
 
     color: ${({ theme }) => theme.colors.gray__400};
     font-size: 1.8rem;
     font-weight: bold;
     font-family: ${({ theme }) => theme.fonts.text};
+
+    input{
+        margin-left: 2rem;
+        height: 4rem;
+        line-height: 1rem;
+    }
+
+    span{
+        font-size: 1.4rem;
+        margin-left: .5rem;
+    }
 `
 
 export const Input = styled.input`
@@ -48,6 +62,11 @@ export const Input = styled.input`
     &::placeholder{
         color: ${({ theme }) => theme.colors.gray__300};
         font-weight: 400;
+    }
+
+    &:disabled{
+        opacity: 0.5;
+        cursor: not-allowed;
     }
     
     &:focus{

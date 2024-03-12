@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plan } from "../../types";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const tasksFiltersSchema = z.object({
     title: z.string().min(1, { message: "O título é obrigatório!" }),
@@ -25,6 +26,7 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
     defaultValues: initialData || {},
   })
   const navigate = useNavigate();
+  const [isParticipantsEnabled, setIsParticipantsEnabled] = useState(false);
 
 
   async function handleFilterTasks(data: TasksFiltersSchema) {
@@ -87,6 +89,20 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
         />
         {errors.date && <S.ErrorMessage>{errors.date.message}</S.ErrorMessage>}
 
+        <S.TaskLabel htmlFor="enableParticipants">
+          Possui participantes?
+         
+          <input 
+              type="checkbox"
+              id="enableParticipants" 
+              checked={isParticipantsEnabled}
+              onChange={() => setIsParticipantsEnabled(!isParticipantsEnabled)}
+          />
+          <span> Sim</span>
+          
+        </S.TaskLabel>
+        
+
 
         <S.TaskLabel htmlFor="participants">Participantes:</S.TaskLabel>
         <S.Input
@@ -94,7 +110,7 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
           id="participants"
           placeholder="Adicione os participantes"
           {...register('participants', {value: initialData?.participants || ''})} 
-
+          disabled={!isParticipantsEnabled}
         />
 
         <S.AddTask >Criar <IoIosAddCircleOutline /></S.AddTask>
