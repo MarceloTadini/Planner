@@ -10,11 +10,31 @@ import { Plan } from "../../types";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+const isValidDate = (str: string): boolean => {
+  const date = new Date(str);
+  // Verifique se o ano, mês e dia são válidos
+  return (
+    date.getFullYear() > 0 &&
+    date.getMonth() >= 0 &&
+    date.getMonth() < 12 &&
+    date.getDate() > 0 &&
+    date.getDate() <= new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+  );
+};
+
 const tasksFiltersSchema = z.object({
     title: z.string().min(1, { message: "O título é obrigatório!" }).max(22, {message: "O título deve ter no máximo 22 caractéres!"}),
     description: z.string().min(1, { message: "A descrição é obrigatória!" }).max(110, {message: "A descrição está muito extensa!"}),
     location: z.string().min(1, { message: "O local é obrigatório!" }).max(22, {message: "O título deve ter no máximo 22 caractéres!"}),
-    date: z.string().min(1, { message: "A data é obrigatória!" }).transform(str => new Date(str)),
+    date: z
+    .string()
+    .min(1, { message: "A data é obrigatória!" })
+    .transform((str) => {
+      if (!isValidDate(str)) {
+        throw new Error("Data inválida!");
+      }
+      return new Date(str);
+    }),
     participants: z.string().max(40 ,{message: "A quantidade de participantes está muito extensa!"}).optional()
 })
 

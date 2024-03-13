@@ -22,10 +22,15 @@ const Home: React.FC = () => {
       margin: {
         top: 20,
         bottom: 10,
-        left: 45,
+        left: 40,
         right: 5,
       },
     },
+    overrides:{
+      canvas:{
+        scale: window.devicePixelRatio
+      }
+    }
   });
 
   useEffect(() => {
