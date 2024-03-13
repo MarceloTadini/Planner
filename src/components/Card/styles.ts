@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const Container = styled.div`
     width: 20rem;
     height: 26rem;
-    
 
     border-radius: 8px; /* Borda arredondada */
     background-color: ${({ theme }) => theme.colors.gray__100};

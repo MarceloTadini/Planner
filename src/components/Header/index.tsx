@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import logo from "../../assets/Logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { FaPrint } from "react-icons/fa";
+import { CreateButton } from "../Buttons/styles";
 
 function Header() {
   const location = useLocation();
@@ -12,10 +12,7 @@ function Header() {
       {location.pathname === "/" && (
         <div>
           <Link to="/planner">
-            <S.CreateButton>Cadastrar Atividade</S.CreateButton>
-          </Link>
-          <Link to="/">
-            <S.PDFButton>Imprimir <FaPrint /></S.PDFButton>
+            <CreateButton>Cadastrar Atividade</CreateButton>
           </Link>
         </div>
         

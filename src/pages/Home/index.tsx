@@ -6,10 +6,21 @@ import { MainWrapper } from '../../components/Wrapper/styles';
 import { Loader } from '../../components/Loader/styles';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Margin, usePDF } from "react-to-pdf";
+import { PDFButton } from '../../components/Buttons/styles';
+import { FaPrint } from "react-icons/fa";
+
+
 
 const Home: React.FC = () => {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { targetRef, toPDF } = usePDF({
+    method: "open",
+    filename: "usepdf-example.pdf",
+    page: { margin: Margin.LARGE },
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +44,12 @@ const Home: React.FC = () => {
   }, [plans]);
 
   return (
-    <MainWrapper>
+    <MainWrapper ref={targetRef}>
+      <PDFButton onClick={toPDF}>Imprimir <FaPrint/> </PDFButton>
       {isLoading ? (
-        <Loader></Loader>
+        <Loader ></Loader>
       ) : (
+        
         plans.map((plan: Plan) => (
           <Card key={plan._id} plan={plan} />
         ))
