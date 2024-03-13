@@ -6,10 +6,9 @@ import { MainWrapper } from '../../components/Wrapper/styles';
 import { Loader } from '../../components/Loader/styles';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Margin, usePDF } from "react-to-pdf";
+import { usePDF } from "react-to-pdf";
 import { PDFButton } from '../../components/Buttons/styles';
 import { FaPrint } from "react-icons/fa";
-
 
 
 const Home: React.FC = () => {
@@ -18,8 +17,15 @@ const Home: React.FC = () => {
 
   const { targetRef, toPDF } = usePDF({
     method: "open",
-    filename: "usepdf-example.pdf",
-    page: { margin: Margin.LARGE },
+    filename: "planner.pdf",
+    page: {
+      margin: {
+        top: 20,
+        bottom: 10,
+        left: 45,
+        right: 5,
+      },
+    },
   });
 
   useEffect(() => {
@@ -45,7 +51,7 @@ const Home: React.FC = () => {
 
   return (
     <MainWrapper ref={targetRef}>
-      <PDFButton onClick={toPDF}>Imprimir <FaPrint/> </PDFButton>
+      <PDFButton onClick={() => toPDF()}>Gerar PDF <FaPrint/></PDFButton>
       {isLoading ? (
         <Loader ></Loader>
       ) : (

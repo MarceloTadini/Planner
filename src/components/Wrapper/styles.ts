@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const MainWrapper = styled.main`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+
   gap: 5rem;
   max-width: 120rem;
   margin: 0 auto;

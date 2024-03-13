@@ -11,11 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const tasksFiltersSchema = z.object({
-    title: z.string().min(1, { message: "O título é obrigatório!" }),
-    description: z.string().min(1, { message: "A descrição é obrigatória!" }),
-    location: z.string().min(1, { message: "O local é obrigatório!" }),
+    title: z.string().min(1, { message: "O título é obrigatório!" }).max(22, {message: "O título deve ter no máximo 22 caractéres!"}),
+    description: z.string().min(1, { message: "A descrição é obrigatória!" }).max(110, {message: "A descrição está muito extensa!"}),
+    location: z.string().min(1, { message: "O local é obrigatório!" }).max(22, {message: "O título deve ter no máximo 22 caractéres!"}),
     date: z.string().min(1, { message: "A data é obrigatória!" }).transform(str => new Date(str)),
-    participants: z.string().optional()
+    participants: z.string().max(40 ,{message: "A quantidade de participantes está muito extensa!"}).optional()
 })
 
 export type TasksFiltersSchema = z.infer<typeof tasksFiltersSchema>
@@ -113,6 +113,8 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
           {...register('participants', {value: initialData?.participants || ''})} 
           disabled={!isParticipantsEnabled}
         />
+         {errors.participants && <S.ErrorMessage>{errors.participants.message}</S.ErrorMessage>} {/* Exibir mensagem de erro */}
+
 
         <S.AddTask >{buttonText} <IoIosAddCircleOutline /></S.AddTask>
       </S.TaskGeneratorForm>
