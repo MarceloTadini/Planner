@@ -33,9 +33,6 @@ const EditPlanner: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
       
-      
-      // Certifique-se de incluir 'id' como dependência para reexecutar o efeito quando 'id' mudar
-
     return(
         <div>
             {isLoading ? (

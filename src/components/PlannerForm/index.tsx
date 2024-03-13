@@ -33,7 +33,10 @@ const tasksFiltersSchema = z.object({
       if (!isValidDate(str)) {
         throw new Error("Data inválida!");
       }
-      return new Date(str);
+
+      // Ajuste para garantir que o mês seja tratado corretamente
+      const [year, month, day] = str.split('-');
+      return new Date(Number(year), Number(month) - 1, Number(day));
     }),
     participants: z.string().max(40 ,{message: "A quantidade de participantes está muito extensa!"}).optional()
 })
