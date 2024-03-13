@@ -10,6 +10,7 @@ import { usePDF } from "react-to-pdf";
 import { PDFButton } from '../../components/Buttons/styles';
 import { FaPrint } from "react-icons/fa";
 import { useLoading } from '../../contexts/useLoading';
+import { NotFound } from '../../components/NotFound/styles';
 
 
 const Home: React.FC = () => {
@@ -55,9 +56,10 @@ const Home: React.FC = () => {
     <MainWrapper ref={targetRef}>
       <PDFButton onClick={() => toPDF()}>Gerar PDF <FaPrint/></PDFButton>
       {isLoading ? (
-        <Loader ></Loader>
+        <Loader />
+      ) : plans.length === 0 ? (
+        <NotFound>Nenhum plano/atividade foi cadastrado na página!</NotFound>
       ) : (
-        
         plans.map((plan: Plan) => (
           <Card key={plan._id} plan={plan} />
         ))
