@@ -5,15 +5,18 @@ import GlobalStyle from "./styles/global"
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { router } from "./Router"
+import { LoadingProvider } from "./contexts/useLoading"
 
 
 function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle/>
-      <RouterProvider router={router} />
-      <ToastContainer/>
+      <LoadingProvider>
+        <GlobalStyle/>
+        <RouterProvider router={router} />
+        <ToastContainer/>
+      </LoadingProvider>
     </ThemeProvider>
   )
 }

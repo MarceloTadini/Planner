@@ -9,11 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { usePDF } from "react-to-pdf";
 import { PDFButton } from '../../components/Buttons/styles';
 import { FaPrint } from "react-icons/fa";
+import { useLoading } from '../../contexts/useLoading';
 
 
 const Home: React.FC = () => {
   const [plans, setPlans] = useState<Plan[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { isLoading, setLoading } = useLoading();
 
   const { targetRef, toPDF } = usePDF({
     method: "open",
@@ -25,11 +26,6 @@ const Home: React.FC = () => {
         left: 40,
         right: 5,
       },
-    },
-    overrides:{
-      canvas:{
-        scale: window.devicePixelRatio
-      }
     }
   });
 
@@ -44,14 +40,15 @@ const Home: React.FC = () => {
         });
 
         setPlans(sortedPlans as Plan[]);
-        setIsLoading(false);
+        setLoading(false);
       } catch (error) {
-        setIsLoading(false);
+        setLoading(false);
         toast.error('Erro ao carregar os dados da API');
       }
     };
 
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plans]);
 
   return (
