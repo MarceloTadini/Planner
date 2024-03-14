@@ -1,17 +1,17 @@
-import * as S from "./styles";
+import * as S from "./styles"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
-import { IoIosAddCircleOutline } from "react-icons/io";
-import axios from 'axios'; // Import do Axios
-import { toast } from 'react-toastify'; 
+import { IoIosAddCircleOutline } from "react-icons/io"
+import axios from 'axios' // Import do Axios
+import { toast } from 'react-toastify' 
 import 'react-toastify/dist/ReactToastify.css'
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Plan } from "../../types";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Plan } from "../../types"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 const isValidDate = (str: string): boolean => {
-  const date = new Date(str);
+  const date = new Date(str)
   // Verifique se o ano, mês e dia são válidos
   return (
     date.getFullYear() > 0 &&
@@ -19,8 +19,8 @@ const isValidDate = (str: string): boolean => {
     date.getMonth() < 12 &&
     date.getDate() > 0 &&
     date.getDate() <= new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-  );
-};
+  )
+}
 
 const tasksFiltersSchema = z.object({
     title: z.string().min(1, { message: "O título é obrigatório!" }).max(22, {message: "O título deve ter no máximo 22 caractéres!"}),
@@ -31,46 +31,46 @@ const tasksFiltersSchema = z.object({
     .min(1, { message: "A data é obrigatória!" })
     .transform((str) => {
       if (!isValidDate(str)) {
-        throw new Error("Data inválida!");
+        throw new Error("Data inválida!")
       }
 
       // Ajuste para garantir que o mês seja tratado corretamente
-      const [year, month, day] = str.split('-');
-      return new Date(Number(year), Number(month) - 1, Number(day));
+      const [year, month, day] = str.split('-')
+      return new Date(Number(year), Number(month) - 1, Number(day))
     }),
     participants: z.string().max(40 ,{message: "A quantidade de participantes está muito extensa!"}).optional()
 })
 
 export type TasksFiltersSchema = z.infer<typeof tasksFiltersSchema>
 
-function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boolean}) {
+const PlannerForm: React.FC<{ initialData?: Plan, isEdit?: boolean }> = ({ initialData, isEdit }) =>  {
   const {register, reset,handleSubmit, formState: {errors}} = useForm<TasksFiltersSchema>({
     resolver: zodResolver(tasksFiltersSchema),
     defaultValues: initialData || {},
   })
-  const navigate = useNavigate();
-  const [isParticipantsEnabled, setIsParticipantsEnabled] = useState(false);
-  const buttonText = isEdit ? "Atualizar" : "Criar";
+  const navigate = useNavigate()
+  const [isParticipantsEnabled, setIsParticipantsEnabled] = useState(false)
+  const buttonText = isEdit ? "Atualizar" : "Criar"
 
 
   async function handleFilterTasks(data: TasksFiltersSchema) {
     try {
       if (isEdit) {
         // Se isEdit for verdadeiro, realiza a atualização (método PUT)
-        const response = await axios.put(`http://localhost:8080/api/planner/${initialData?._id}`, data);
-        console.log('Resposta da API:', response);
-        toast.success('Atividade atualizada com sucesso!');
-        navigate("/");
+        const response = await axios.put(`http://localhost:8080/api/planner/${initialData?._id}`, data)
+        console.log('Resposta da API:', response)
+        toast.success('Atividade atualizada com sucesso!')
+        navigate("/")
       } else {
         // Caso contrário, realiza a criação (método POST)
-        const response = await axios.post('http://localhost:8080/api/planner', data);
-        console.log('Resposta da API:', response);
-        toast.success('Atividade cadastrada com sucesso!');
+        const response = await axios.post('http://localhost:8080/api/planner', data)
+        console.log('Resposta da API:', response)
+        toast.success('Atividade cadastrada com sucesso!')
       }
-      reset();
+      reset()
     } catch (error) {
-      console.error('Erro ao enviar dados:', error);
-      toast.error('Falha ao cadastrar/atualizar, tente novamente mais tarde!');
+      console.error('Erro ao enviar dados:', error)
+      toast.error('Falha ao cadastrar/atualizar, tente novamente mais tarde!')
       }
   }
 
@@ -142,7 +142,7 @@ function PlannerForm({initialData, isEdit}: {initialData?: Plan;  isEdit?: boole
         <S.AddTask >{buttonText} <IoIosAddCircleOutline /></S.AddTask>
       </S.TaskGeneratorForm>
     </S.Container>
-  );
+  )
 }
 
-export default PlannerForm;
+export default PlannerForm

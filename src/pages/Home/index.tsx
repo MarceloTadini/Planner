@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Plan } from '../../types';
-import Card from '../../components/Card';
-import { MainWrapper } from '../../components/Wrapper/styles';
-import { Loader } from '../../components/Loader/styles';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { usePDF } from "react-to-pdf";
-import { PDFButton } from '../../components/Buttons/styles';
-import { FaPrint } from "react-icons/fa";
-import { useLoading } from '../../contexts/useLoading';
-import { NotFound } from '../../components/NotFound/styles';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Plan } from '../../types'
+import Card from '../../components/Card'
+import { MainWrapper } from '../../components/Wrapper/styles'
+import { Loader } from '../../components/Loader/styles'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { usePDF } from "react-to-pdf"
+import { PDFButton } from '../../components/Buttons/styles'
+import { FaPrint } from "react-icons/fa"
+import { useLoading } from '../../contexts/useLoading'
+import { NotFound } from '../../components/NotFound/styles'
 
 
 const Home: React.FC = () => {
-  const [plans, setPlans] = useState<Plan[]>([]);
-  const { isLoading, setLoading } = useLoading();
+  const [plans, setPlans] = useState<Plan[]>([])
+  const { isLoading, setLoading } = useLoading()
 
   const { targetRef, toPDF } = usePDF({
     method: "open",
@@ -28,29 +28,29 @@ const Home: React.FC = () => {
         right: 5,
       },
     }
-  });
+  })
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/planner');
+        const response = await axios.get('http://localhost:8080/api/planner')
         const sortedPlans = response.data.sort((a: Plan, b: Plan) => {
-          const dateA = new Date(a.date).getTime();
-          const dateB = new Date(b.date).getTime();
-          return dateA - dateB;
-        });
+          const dateA = new Date(a.date).getTime()
+          const dateB = new Date(b.date).getTime()
+          return dateA - dateB
+        })
 
-        setPlans(sortedPlans as Plan[]);
-        setLoading(false);
+        setPlans(sortedPlans as Plan[])
+        setLoading(false)
       } catch (error) {
-        setLoading(false);
-        toast.error('Erro ao carregar os dados da API');
+        setLoading(false)
+        toast.error('Erro ao carregar os dados da API')
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plans]);
+  }, [plans])
 
   return (
     <MainWrapper ref={targetRef}>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
         ))
       )}
     </MainWrapper>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

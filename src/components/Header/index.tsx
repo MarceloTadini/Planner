@@ -1,10 +1,10 @@
-import * as S from "./styles";
-import logo from "../../assets/Logo.png";
-import { Link, useLocation } from "react-router-dom";
-import { CreateButton } from "../Buttons/styles";
+import * as S from "./styles"
+import logo from "../../assets/Logo.png"
+import { Link, useLocation } from "react-router-dom"
+import { CreateButton } from "../Buttons/styles"
 
-function Header() {
-  const location = useLocation();
+const Header: React.FC = () =>  {
+  const location = useLocation()
 
   return (
     <S.Container>
@@ -21,4 +21,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header

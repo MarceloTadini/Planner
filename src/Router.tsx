@@ -1,10 +1,10 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import Indicator from "./components/Indicator";
-import { Wrapper } from "./components/Wrapper/styles";
-import Home from "./pages/Home";
-import Planner from "./pages/Planner";
-import EditPlanner from "./pages/EditPlanner";
+import { createBrowserRouter, Outlet } from "react-router-dom"
+import Header from "./components/Header"
+import Indicator from "./components/Indicator"
+import { Wrapper } from "./components/Wrapper/styles"
+import Home from "./pages/Home"
+import Planner from "./pages/Planner"
+import EditPlanner from "./pages/EditPlanner"
 
 const pathMap = {
     home: 'Home',

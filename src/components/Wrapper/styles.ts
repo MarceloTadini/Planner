@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray__100};
   padding: 2rem 2rem;
   min-height: 84vh;
-`;
+`
 
 
 export const MainWrapper = styled.main`

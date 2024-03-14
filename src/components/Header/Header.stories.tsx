@@ -1,6 +1,6 @@
 import Header from "."
 import { Meta, StoryObj } from "@storybook/react"
-import { withRouter } from 'storybook-addon-remix-react-router';
+import { withRouter } from 'storybook-addon-remix-react-router'
 
 export default{
     title: "Components/Header",
