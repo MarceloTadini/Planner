@@ -6,7 +6,7 @@ import axios from 'axios' // Import do Axios
 import { toast } from 'react-toastify' 
 import 'react-toastify/dist/ReactToastify.css'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Plan } from "../../types"
+import { PlannerFormProps } from "../../types"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
@@ -43,7 +43,7 @@ const tasksFiltersSchema = z.object({
 
 export type TasksFiltersSchema = z.infer<typeof tasksFiltersSchema>
 
-const PlannerForm: React.FC<{ initialData?: Plan, isEdit?: boolean }> = ({ initialData, isEdit }) =>  {
+const PlannerForm: React.FC<PlannerFormProps> = ({ initialData, isEdit }) =>  {
   const {register, reset,handleSubmit, formState: {errors}} = useForm<TasksFiltersSchema>({
     resolver: zodResolver(tasksFiltersSchema),
     defaultValues: initialData || {},

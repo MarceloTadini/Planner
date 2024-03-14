@@ -3,7 +3,7 @@ import * as S from './styles'
 import { useLocation, Link } from 'react-router-dom'
 import { IndicatorProps } from '../../types/index'
 
-interface Props {
+export interface Props {
   pathMap: Record<string, string>
 }
 

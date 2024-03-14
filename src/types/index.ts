@@ -15,3 +15,8 @@ export interface Plan {
 export interface CardProps {
     plan: Plan;
 }
+
+export interface PlannerFormProps {
+    initialData?: Plan;
+    isEdit?: boolean;
+  }
