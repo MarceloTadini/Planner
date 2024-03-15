@@ -28,6 +28,8 @@
 * Instale as dependências: ```` npm install ````
 * Inicie o servidor: ```` npm run dev ````
 * Execução dos storybook: ```` npm run storybook ````
+* ATENÇÃO: não esqueça de baixar a API e inicializá-la para rodar o projeto!
+[Link para a API](https://github.com/MarceloTadini/PlannerAPI)
 
 ## :computer: Exemplo de Funcionamento
 
