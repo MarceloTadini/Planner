@@ -21,7 +21,7 @@
 
 ## :rocket: Como executar 
 * Clone o repositório:
-```` [git clone https://github.com/MarceloTadini/Netshoes.git](https://github.com/MarceloTadini/Planner.git) ````
+```` git clone https://github.com/MarceloTadini/Planner.git ````
 * Entre na pasta raíz do projeto
 * Instale a versão mais recente do node localmente:
 ````  nvm install node ```` 
