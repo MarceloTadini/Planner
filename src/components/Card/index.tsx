@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ plan }) =>{
     const formatDate = (date: Date) => {
         // Use toLocaleDateString for "dd/mm/yyyy" format (customizable)
         return new Date(date).toLocaleDateString('pt-BR') // Adjust locale for 'pt-BR'
-      }
+    }
 
       const handleEdit = () => {
         navigate(`/editPlanner/${plan._id}`)

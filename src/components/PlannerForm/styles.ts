@@ -74,6 +74,10 @@ export const Input = styled.input`
         border: 2px solid ${({ theme }) => theme.colors.blue__500}; 
     }
 
+    @media (max-width: 527px) {
+        width: 25rem
+    }
+
 `
 
 export const AddTask = styled.button`

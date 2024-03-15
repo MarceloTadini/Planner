@@ -46,7 +46,10 @@ export type TasksFiltersSchema = z.infer<typeof tasksFiltersSchema>
 const PlannerForm: React.FC<PlannerFormProps> = ({ initialData, isEdit }) =>  {
   const {register, reset,handleSubmit, formState: {errors}} = useForm<TasksFiltersSchema>({
     resolver: zodResolver(tasksFiltersSchema),
-    defaultValues: initialData || {},
+    defaultValues: {
+      ...initialData,
+      date: initialData?.date ? new Date(initialData.date) : new Date(),
+    }, 
   })
   const navigate = useNavigate()
   const [isParticipantsEnabled, setIsParticipantsEnabled] = useState(false)
