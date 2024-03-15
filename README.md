@@ -21,13 +21,10 @@
 
 ## :rocket: Como executar 
 * Clone o repositório:
-```` [git clone https://github.com/MarceloTadini/Netshoes.git](https://github.com/MarceloTadini/Planner.git) ````
+```` git clone https://github.com/MarceloTadini/Planner.git ````
 * Entre na pasta raíz do projeto
-* Certifique-se de ter a versão do Node correta (v16.16.0). Se estiver utilizando o NVM, você pode ajustar a versão do Node assim:
-
-````  nvm install v16.16.0 ```` 
-```` nvm use v16.16.0 ```` 
-
+* Instale a versão mais recente do node localmente:
+````  nvm install node ```` 
 * Instale as dependências: ```` npm install ````
 * Inicie o servidor: ```` npm run dev ````
 * Execução dos storybook: ```` npm run storybook ````
