@@ -10,12 +10,9 @@ const Header: React.FC = () =>  {
     <S.Container>
       <img src={logo} alt="To Do Logo" />
       {location.pathname === "/" && (
-        <div>
           <Link to="/planner">
             <CreateButton>Cadastrar Atividade</CreateButton>
           </Link>
-        </div>
-        
       )}
     </S.Container>
   );
